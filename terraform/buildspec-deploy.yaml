@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python:3.x
+    commands:
+      - echo Installing kubectl & awscli
+      - curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.4/2023-09-20/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl 
+      - mv ./kubectl /usr/local/bin
+      - aws --version
+      - kubectl version --client 
+  pre_build:
+    commands:
+      - echo Applying Kubernetes manifests...
+      - kubectl apply -f k8s/deployment.yaml
+      - kubectl apply -f k8s/service.yaml
+      - kubectl rollout status deployment/application -n default
+
+artifacts:
+  files:
+    - '**/*'

@@ -1,0 +1,20 @@
+eks-one-tier-app/
+├── app/
+│   ├── main.py              # FastAPI App (or Node.js)
+│   ├── requirements.txt
+│   └── Dockerfile
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml         # For ALB Ingress
+├── buildspec.yml            # CodeBuild instructions
+├── appspec.yaml             # CodeDeploy config (for EKS)
+├── taskdef.yaml             # CodeDeploy K8s hooks (optional)
+├── terraform/
+│   ├── vpc.tf
+│   ├── eks.tf
+│   ├── ecr.tf
+│   ├── iam.tf
+│   ├── alb.tf
+│   └── pipeline.tf
+└── README.md
